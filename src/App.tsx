@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom';
+import { Analytics } from '@vercel/analytics/react';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { CartProvider } from './context/CartContext';
 import { ThemeProvider } from './context/ThemeContext';
@@ -252,6 +253,7 @@ export const App: React.FC = () => {
       </CartProvider>
     </StoreSettingsProvider>
   </AuthProvider>
+  <Analytics />
   </ThemeProvider>
   );
 };
