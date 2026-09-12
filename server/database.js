@@ -4,6 +4,9 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 
 const { Pool } = pg;
+// Ensure NUMERIC/DECIMAL (OID 1700) types are returned as floats in JS instead of strings
+pg.types.setTypeParser(1700, (val) => parseFloat(val));
+
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
