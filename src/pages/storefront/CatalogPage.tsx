@@ -531,7 +531,7 @@ export const CatalogPage: React.FC = () => {
                           className="w-full bg-primary/95 hover:bg-secondary text-white py-2.5 rounded-full font-sans text-[11px] uppercase tracking-widest transition-all duration-300 flex items-center justify-center gap-1.5 shadow-lg border border-secondary/30 hover:shadow-gold-md"
                         >
                           <span className="material-symbols-outlined text-[16px]">shopping_bag</span>
-                          <span>Acquire • ${product.price.toFixed(0)}</span>
+                          <span>Acquire • ${Number(product.price || 0).toFixed(0)}</span>
                         </button>
                       </div>
                     </div>
@@ -591,7 +591,7 @@ export const CatalogPage: React.FC = () => {
                       {/* Price & Finish Swatches */}
                       <div className="pt-2.5 border-t border-surface-container flex items-center justify-between">
                         <span className="font-serif text-lg font-medium text-primary">
-                          ${product.price.toFixed(2)}
+                          ${Number(product.price || 0).toFixed(2)}
                         </span>
 
                         <div className="flex items-center gap-1.5" title="Available Finishes">

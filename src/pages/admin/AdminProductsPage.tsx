@@ -384,7 +384,7 @@ export const AdminProductsPage: React.FC = () => {
                             </td>
 
                             <td className="py-3 px-3 text-right font-serif font-bold text-primary">
-                              ${p.price.toFixed(2)}
+                              ${Number(p.price || 0).toFixed(2)}
                             </td>
 
                             <td className="py-3 px-3 text-right font-medium text-on-surface">
@@ -456,7 +456,7 @@ export const AdminProductsPage: React.FC = () => {
                         {selectedProduct.title}
                       </h3>
                       <span className="font-serif text-xl font-bold text-primary block mt-1">
-                        ${selectedProduct.price.toFixed(2)}
+                        ${Number(selectedProduct.price || 0).toFixed(2)}
                       </span>
                     </div>
                   </div>

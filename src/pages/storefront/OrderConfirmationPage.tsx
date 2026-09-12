@@ -161,7 +161,7 @@ export const OrderConfirmationPage: React.FC = () => {
               </div>
 
               <span className="font-serif text-sm font-semibold text-primary">
-                ${item.total_price.toFixed(2)}
+                ${Number(item.total_price || 0).toFixed(2)}
               </span>
             </div>
           ))}
@@ -171,21 +171,21 @@ export const OrderConfirmationPage: React.FC = () => {
         <div className="pt-4 border-t border-surface-container space-y-2 text-xs">
           <div className="flex justify-between text-on-surface-variant">
             <span>Subtotal</span>
-            <span className="font-serif font-medium text-primary">${order.subtotal.toFixed(2)}</span>
+            <span className="font-serif font-medium text-primary">${Number(order.subtotal || 0).toFixed(2)}</span>
           </div>
           <div className="flex justify-between text-on-surface-variant">
             <span>Courier Shipping</span>
             <span className="font-serif font-medium text-primary">
-              {order.shipping_fee === 0 ? 'Complimentary' : `$${order.shipping_fee.toFixed(2)}`}
+              {order.shipping_fee === 0 ? 'Complimentary' : `$${Number(order.shipping_fee || 0).toFixed(2)}`}
             </span>
           </div>
           <div className="flex justify-between text-on-surface-variant">
             <span>Tax</span>
-            <span className="font-serif font-medium text-primary">${order.tax.toFixed(2)}</span>
+            <span className="font-serif font-medium text-primary">${Number(order.tax || 0).toFixed(2)}</span>
           </div>
           <div className="pt-2 border-t border-secondary/20 flex justify-between items-baseline">
             <span className="font-semibold text-primary uppercase tracking-wider text-xs">Amount Authorized</span>
-            <span className="font-serif text-2xl font-bold text-primary">${order.total_amount.toFixed(2)}</span>
+            <span className="font-serif text-2xl font-bold text-primary">${Number(order.total_amount || 0).toFixed(2)}</span>
           </div>
         </div>
 

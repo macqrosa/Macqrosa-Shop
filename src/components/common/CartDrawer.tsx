@@ -64,7 +64,7 @@ export const CartDrawer: React.FC = () => {
           <div className="px-6 py-3 bg-surface-container-low/60 border-b border-secondary/10">
             {remainingForFreeShipping > 0 ? (
               <p className="text-xs text-on-surface-variant font-light mb-1.5">
-                Add <span className="font-semibold text-primary">${remainingForFreeShipping.toFixed(2)}</span> more to unlock complimentary White-Glove Courier.
+                Add <span className="font-semibold text-primary">${Number(remainingForFreeShipping || 0).toFixed(2)}</span> more to unlock complimentary White-Glove Courier.
               </p>
             ) : (
               <p className="text-xs text-secondary font-medium mb-1.5 flex items-center gap-1">
@@ -174,7 +174,7 @@ export const CartDrawer: React.FC = () => {
               {discountAmount > 0 && (
                 <div className="flex items-center justify-between text-xs text-secondary font-medium">
                   <span>Maison Promo ({promoCode})</span>
-                  <span>-${discountAmount.toFixed(2)}</span>
+                  <span>-${Number(discountAmount || 0).toFixed(2)}</span>
                 </div>
               )}
 

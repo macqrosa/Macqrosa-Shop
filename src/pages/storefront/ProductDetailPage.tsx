@@ -279,12 +279,12 @@ export const ProductDetailPage: React.FC = () => {
             <div className="flex items-baseline justify-between">
               <div className="flex items-baseline gap-2">
                 <span className="font-serif text-3xl font-normal text-primary">
-                  ${displayPrice.toFixed(2)}
+                  ${Number(displayPrice || 0).toFixed(2)}
                 </span>
                 <span className="text-[10px] uppercase tracking-wider text-on-surface-variant font-medium">USD</span>
                 {product.compare_at_price && (
                   <span className="text-xs line-through text-outline ml-1">
-                    ${product.compare_at_price.toFixed(2)}
+                    ${Number(product.compare_at_price || 0).toFixed(2)}
                   </span>
                 )}
               </div>
@@ -339,7 +339,7 @@ export const ProductDetailPage: React.FC = () => {
                     }`}
                   >
                     <span>{v.variant_label}</span>
-                    {v.price_modifier > 0 && <span className="text-[9px] opacity-80">+${v.price_modifier.toFixed(2)}</span>}
+                    {v.price_modifier > 0 && <span className="text-[9px] opacity-80">+${Number(v.price_modifier || 0).toFixed(2)}</span>}
                     {v.price_modifier < 0 && <span className="text-[9px] opacity-80">-${Math.abs(v.price_modifier).toFixed(2)}</span>}
                   </button>
                 ))}

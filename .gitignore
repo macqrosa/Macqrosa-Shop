@@ -12,3 +12,6 @@ debug.css
 *.py
 test_*.js
 implementation_plan.md
+
+.vercel
+.env*

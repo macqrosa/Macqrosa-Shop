@@ -589,7 +589,7 @@ export const HomePage: React.FC = () => {
                           className="w-full bg-primary/95 backdrop-blur-md text-on-primary py-2.5 rounded font-sans text-[11px] uppercase tracking-widest hover:bg-secondary hover:text-primary transition-colors flex items-center justify-center gap-1.5 shadow-lg"
                         >
                           <span className="material-symbols-outlined text-[16px]">shopping_bag</span>
-                          <span>Acquire • ${product.price.toFixed(0)}</span>
+                          <span>Acquire • ${Number(product.price || 0).toFixed(0)}</span>
                         </button>
                       </div>
                     </div>
@@ -649,7 +649,7 @@ export const HomePage: React.FC = () => {
                       {/* Price & Volume/Finish */}
                       <div className="pt-2.5 border-t border-surface-container flex items-center justify-between">
                         <span className="font-serif text-xl font-medium text-primary">
-                          ${product.price.toFixed(2)}
+                          ${Number(product.price || 0).toFixed(2)}
                         </span>
 
                         <span className="text-[10px] uppercase tracking-wider text-on-surface-variant bg-surface-container-low px-2 py-0.5 rounded font-medium">

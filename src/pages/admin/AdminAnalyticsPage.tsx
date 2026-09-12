@@ -234,7 +234,7 @@ export const AdminAnalyticsPage: React.FC = () => {
                         Average Order Value
                       </span>
                       <span className="font-serif text-3xl text-primary font-medium mt-1 tracking-tight">
-                        ${data.kpis.averageOrderValue.toFixed(2)}
+                        ${Number(data.kpis.averageOrderValue || 0).toFixed(2)}
                       </span>
                     </div>
                     <div className="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary shrink-0">
@@ -452,7 +452,7 @@ export const AdminAnalyticsPage: React.FC = () => {
 
                         <div className="text-right">
                           <span className="font-serif font-bold text-primary block">
-                            ${order.total_amount.toFixed(2)}
+                            ${Number(order.total_amount || 0).toFixed(2)}
                           </span>
                           <span className={`inline-block px-2 py-0.5 rounded-full text-[9px] uppercase tracking-wider font-semibold border ${getStatusBadge(order.status)}`}>
                             {order.status}

@@ -597,7 +597,7 @@ export const CheckoutPage: React.FC = () => {
                     className="w-full bg-primary text-on-primary py-4 rounded text-xs uppercase tracking-[0.24em] font-semibold hover:bg-neutral-800 transition-all shadow-gold-md flex items-center justify-center gap-3"
                   >
                     <span className="material-symbols-outlined text-secondary-fixed">auto_awesome</span>
-                    <span>{submitting ? 'Transmitting to Place Vendôme...' : `Authorize & Place Order • $${finalTotal.toFixed(2)}`}</span>
+                    <span>{submitting ? 'Transmitting to Place Vendôme...' : `Authorize & Place Order • $${Number(finalTotal || 0).toFixed(2)}`}</span>
                   </button>
                   <p className="text-center text-[10px] text-outline mt-2 font-light">
                     By confirming your order, you agree to our Terms of Haute Sale and white-glove transport protocol.
@@ -644,27 +644,27 @@ export const CheckoutPage: React.FC = () => {
             <div className="pt-3 border-t border-surface-container space-y-2 text-xs">
               <div className="flex justify-between text-on-surface-variant">
                 <span>Subtotal</span>
-                <span className="font-serif text-primary">${subtotal.toFixed(2)}</span>
+                <span className="font-serif text-primary">${Number(subtotal || 0).toFixed(2)}</span>
               </div>
               {discountAmount > 0 && (
                 <div className="flex justify-between text-secondary font-semibold">
                   <span>VIP Discount ({promoCode})</span>
-                  <span>-${discountAmount.toFixed(2)}</span>
+                  <span>-${Number(discountAmount || 0).toFixed(2)}</span>
                 </div>
               )}
               <div className="flex justify-between text-on-surface-variant">
                 <span>Shipping</span>
                 <span className="font-serif text-primary">
-                  {shippingFee === 0 ? 'Complimentary' : `$${shippingFee.toFixed(2)}`}
+                  {shippingFee === 0 ? 'Complimentary' : `$${Number(shippingFee || 0).toFixed(2)}`}
                 </span>
               </div>
               <div className="flex justify-between text-on-surface-variant">
                 <span>Estimated Tax</span>
-                <span className="font-serif text-primary">${tax.toFixed(2)}</span>
+                <span className="font-serif text-primary">${Number(tax || 0).toFixed(2)}</span>
               </div>
               <div className="pt-3 border-t border-secondary/20 flex justify-between items-baseline">
                 <span className="text-xs uppercase tracking-wider font-semibold text-primary">Total</span>
-                <span className="font-serif text-2xl font-bold text-primary">${finalTotal.toFixed(2)}</span>
+                <span className="font-serif text-2xl font-bold text-primary">${Number(finalTotal || 0).toFixed(2)}</span>
               </div>
             </div>
 

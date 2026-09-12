@@ -354,7 +354,7 @@ export const AdminOrdersPage: React.FC = () => {
                               {order.items?.length || 1} item{order.items?.length !== 1 ? 's' : ''}
                             </td>
                             <td className="py-3.5 px-3 text-right font-serif font-bold text-primary">
-                              ${order.total_amount.toFixed(2)}
+                              ${Number(order.total_amount || 0).toFixed(2)}
                             </td>
                             <td className="py-3.5 px-3">
                               <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full bg-surface-container text-[9px] uppercase tracking-wider font-semibold text-primary">

@@ -377,7 +377,7 @@ export const AdminSettingsPage: React.FC = () => {
                           {p.discount_type === 'percentage' ? `${p.discount_value}% Off` : `$${p.discount_value} Off`}
                         </td>
                         <td className="py-3.5 px-4 text-on-surface-variant">
-                          {p.min_spend > 0 ? `$${p.min_spend.toFixed(2)}` : 'None'}
+                          {p.min_spend > 0 ? `$${Number(p.min_spend || 0).toFixed(2)}` : 'None'}
                         </td>
                         <td className="py-3.5 px-4 text-on-surface-variant">
                           {p.uses_count} {p.max_uses ? `/ ${p.max_uses}` : 'uses'}

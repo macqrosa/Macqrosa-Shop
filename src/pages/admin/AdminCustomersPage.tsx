@@ -470,7 +470,7 @@ export const AdminCustomersPage: React.FC = () => {
                     <div className="p-3 rounded-lg bg-surface-container-low text-center">
                       <span className="text-[10px] uppercase text-outline block">Total Spend</span>
                       <span className="font-serif font-bold text-primary text-xs">
-                        ${customerDetail.customer.total_spent?.toFixed(2)}
+                        ${Number(customerDetail.customer.total_spent || 0).toFixed(2)}
                       </span>
                     </div>
                     <div className="p-3 rounded-lg bg-surface-container-low text-center">
@@ -513,13 +513,13 @@ export const AdminCustomersPage: React.FC = () => {
                             {ord.items?.map((it: any, i: number) => (
                               <div key={i} className="py-1 flex justify-between text-on-surface-variant">
                                 <span className="truncate max-w-[260px]">{it.product_title} (x{it.quantity})</span>
-                                <span className="font-mono font-medium">${it.total_price.toFixed(2)}</span>
+                                <span className="font-mono font-medium">${Number(it.total_price || 0).toFixed(2)}</span>
                               </div>
                             ))}
                           </div>
                           <div className="pt-2 border-t border-surface-container flex justify-between font-semibold text-primary">
                             <span>Total Paid</span>
-                            <span className="font-serif font-bold">${ord.total_amount.toFixed(2)}</span>
+                            <span className="font-serif font-bold">${Number(ord.total_amount || 0).toFixed(2)}</span>
                           </div>
                         </div>
                       ))}

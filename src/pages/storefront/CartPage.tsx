@@ -121,7 +121,7 @@ export const CartPage: React.FC = () => {
                     {/* Unit Price */}
                     <div className="col-span-4 sm:col-span-2 text-left sm:text-center">
                       <span className="font-serif text-sm text-primary">
-                        ${item.product.price.toFixed(2)}
+                        ${Number(item.product.price || 0).toFixed(2)}
                       </span>
                     </div>
 
@@ -219,26 +219,26 @@ export const CartPage: React.FC = () => {
               <div className="space-y-2.5 pt-2 border-t border-surface-container text-xs">
                 <div className="flex justify-between text-on-surface-variant">
                   <span>Bag Subtotal</span>
-                  <span className="font-serif font-medium text-primary">${subtotal.toFixed(2)}</span>
+                  <span className="font-serif font-medium text-primary">${Number(subtotal || 0).toFixed(2)}</span>
                 </div>
 
                 {discountAmount > 0 && (
                   <div className="flex justify-between text-secondary font-semibold">
                     <span>Maison Privilege ({promoCode})</span>
-                    <span>-${discountAmount.toFixed(2)}</span>
+                    <span>-${Number(discountAmount || 0).toFixed(2)}</span>
                   </div>
                 )}
 
                 <div className="flex justify-between text-on-surface-variant">
                   <span>White-Glove Courier</span>
                   <span className="font-serif font-medium text-primary">
-                    {shippingFee === 0 ? 'Complimentary' : `$${shippingFee.toFixed(2)}`}
+                    {shippingFee === 0 ? 'Complimentary' : `$${Number(shippingFee || 0).toFixed(2)}`}
                   </span>
                 </div>
 
                 <div className="flex justify-between text-on-surface-variant">
                   <span>Estimated Sales Tax</span>
-                  <span className="font-serif font-medium text-primary">${tax.toFixed(2)}</span>
+                  <span className="font-serif font-medium text-primary">${Number(tax || 0).toFixed(2)}</span>
                 </div>
 
                 <div className="pt-3 border-t border-secondary/20 flex justify-between items-baseline text-base">
@@ -246,7 +246,7 @@ export const CartPage: React.FC = () => {
                     Total Due
                   </span>
                   <span className="font-serif text-2xl font-bold text-primary">
-                    ${finalTotal.toFixed(2)}
+                    ${Number(finalTotal || 0).toFixed(2)}
                   </span>
                 </div>
               </div>

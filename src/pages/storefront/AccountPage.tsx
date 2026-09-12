@@ -196,7 +196,7 @@ export const AccountPage: React.FC = () => {
               <div>
                 <span className="text-[10px] uppercase tracking-wider text-outline dark:text-dark-outline block">Lifetime Spend</span>
                 <span className="font-serif text-lg font-bold text-primary dark:text-dark-on-surface">
-                  ${customer.totalSpent ? customer.totalSpent.toFixed(2) : '0.00'}
+                  ${customer.totalSpent ? Number(customer.totalSpent || 0).toFixed(2) : '0.00'}
                 </span>
               </div>
             </div>
@@ -379,7 +379,7 @@ export const AccountPage: React.FC = () => {
                     <div className="text-right">
                       <span className="text-[10px] uppercase text-outline dark:text-dark-outline block">Sacred Total</span>
                       <span className="font-serif text-xl font-bold text-primary dark:text-dark-on-surface">
-                        ${order.total_amount.toFixed(2)}
+                        ${Number(order.total_amount || 0).toFixed(2)}
                       </span>
                     </div>
                   </div>
