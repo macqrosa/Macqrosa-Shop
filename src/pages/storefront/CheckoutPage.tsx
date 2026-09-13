@@ -385,7 +385,7 @@ export const CheckoutPage: React.FC = () => {
                       </div>
                     </div>
                     <span className="font-serif text-xs font-semibold text-primary">
-                      +${(baseShipping + 35).toFixed(2)}
+                      +${Number(baseShipping + 35 || 0).toFixed(2)}
                     </span>
                   </label>
                 </div>
@@ -634,7 +634,7 @@ export const CheckoutPage: React.FC = () => {
                     </p>
                   </div>
                   <span className="font-serif text-xs font-semibold text-primary">
-                    ${(item.product.price * item.quantity).toFixed(2)}
+                    ${Number(item.product.price * item.quantity || 0).toFixed(2)}
                   </span>
                 </div>
               ))}

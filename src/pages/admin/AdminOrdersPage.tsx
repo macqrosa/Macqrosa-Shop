@@ -558,7 +558,7 @@ export const AdminOrdersPage: React.FC = () => {
                             </div>
                           </div>
                           <span className="font-serif font-bold text-primary shrink-0">
-                            ${(it.product_price * it.quantity).toFixed(2)}
+                            ${Number(it.product_price * it.quantity || 0).toFixed(2)}
                           </span>
                         </div>
                       ))}

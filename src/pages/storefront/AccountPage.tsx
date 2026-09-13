@@ -403,7 +403,7 @@ export const AccountPage: React.FC = () => {
                             </div>
                           </div>
                           <span className="font-serif font-medium text-primary dark:text-dark-on-surface">
-                            ${(item.product_price * item.quantity).toFixed(2)}
+                            ${Number(item.product_price * item.quantity || 0).toFixed(2)}
                           </span>
                         </div>
                       ))}

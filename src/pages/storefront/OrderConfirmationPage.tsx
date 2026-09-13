@@ -155,7 +155,7 @@ export const OrderConfirmationPage: React.FC = () => {
                     {item.product_title}
                   </h4>
                   <span className="text-[10px] text-outline">
-                    Qty: {item.quantity} • ${(item.product_price).toFixed(2)} each
+                    Qty: {item.quantity} • ${Number(item.product_price || 0).toFixed(2)} each
                   </span>
                 </div>
               </div>

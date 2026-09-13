@@ -159,7 +159,7 @@ export const CartDrawer: React.FC = () => {
                       </div>
 
                       <span className="font-serif text-sm font-semibold text-primary">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        ${Number(item.product.price * item.quantity || 0).toFixed(2)}
                       </span>
                     </div>
                   </div>
@@ -181,7 +181,7 @@ export const CartDrawer: React.FC = () => {
               <div className="flex items-center justify-between text-sm">
                 <span className="text-on-surface-variant uppercase tracking-wider text-xs">Subtotal</span>
                 <span className="font-serif text-lg font-semibold text-primary">
-                  ${(subtotal - discountAmount).toFixed(2)}
+                  ${Number(subtotal - discountAmount || 0).toFixed(2)}
                 </span>
               </div>
 

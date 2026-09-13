@@ -147,7 +147,7 @@ export const CartPage: React.FC = () => {
                     {/* Line total & remove */}
                     <div className="col-span-4 sm:col-span-2 text-right">
                       <span className="font-serif text-base font-semibold text-primary block">
-                        ${(item.product.price * item.quantity).toFixed(2)}
+                        ${Number(item.product.price * item.quantity || 0).toFixed(2)}
                       </span>
                       <button
                         onClick={() => removeItem(item.product.id, item.selectedShade?.name)}
