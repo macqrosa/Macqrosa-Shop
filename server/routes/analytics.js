@@ -11,13 +11,17 @@ router.get('/', async (req, res) => {
   try {
     const { period = '30d', category, product } = req.query;
 
-    let dateModifier = '-30 days';
-    if (period === '7d') dateModifier = '-7 days';
-    if (period === '90d') dateModifier = '-90 days';
+    let daysToSubtract = 30;
+    if (period === '7d') daysToSubtract = 7;
+    if (period === '90d') daysToSubtract = 90;
+    
+    const dateThreshold = new Date();
+    dateThreshold.setDate(dateThreshold.getDate() - daysToSubtract);
+    const dateThresholdStr = dateThreshold.toISOString();
 
     let filterJoins = '';
-    let filterWhere = `AND o.created_at >= datetime('now', '${dateModifier}')`;
-    const filterParams = [];
+    const filterParams = [dateThresholdStr];
+    let filterWhere = `AND o.created_at >= $1`;
 
     if (category && category !== 'All Categories' || product && product !== 'All Products') {
       filterJoins = `JOIN order_items oi ON o.id = oi.order_id`;
@@ -58,8 +62,9 @@ router.get('/', async (req, res) => {
     `, filterParams);
 
     // 3. Top performing formulations
-    let topProductsWhere = `WHERE o.created_at >= datetime('now', '${dateModifier}') AND o.status != 'cancelled'`;
-    const topProductsParams = [];
+    const topProductsParams = [dateThresholdStr];
+    let topProductsWhere = `WHERE o.created_at >= $1 AND o.status != 'cancelled'`;
+    
     if (category && category !== 'All Categories') {
       topProductsParams.push(category);
       topProductsWhere += ` AND p.category = $${topProductsParams.length}`;
