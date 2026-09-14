@@ -15,8 +15,15 @@ export const AdminAnalyticsPage: React.FC = () => {
   const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
-    fetch('/api/categories/summary').then(r => r.json()).then(data => setCategories(data || []));
-    fetch('/api/products').then(r => r.json()).then(data => setProducts(data.products || []));
+    fetch('/api/categories/summary')
+      .then(r => r.json())
+      .then(data => setCategories(Array.isArray(data) ? data : []))
+      .catch(() => setCategories([]));
+      
+    fetch('/api/products')
+      .then(r => r.json())
+      .then(data => setProducts(Array.isArray(data?.products) ? data.products : []))
+      .catch(() => setProducts([]));
   }, []);
 
   useEffect(() => {
@@ -31,6 +38,11 @@ export const AdminAnalyticsPage: React.FC = () => {
     })
       .then(res => res.json())
       .then(resData => {
+        if (resData.error || !resData.kpis) {
+          console.error('Analytics API returned error:', resData);
+          setLoading(false);
+          return;
+        }
         setData(resData);
         setLoading(false);
       })
