@@ -20,13 +20,10 @@ import inventoryRoutes from './routes/inventory.js';
 import customerRoutes from './routes/customers.js';
 import analyticsRoutes from './routes/analytics.js';
 import paymentRoutes from './routes/payments.js';
-import uploadRoutes from './routes/upload.js';
 import settingsRoutes from './routes/settings.js';
 import promoRoutes from './routes/promos.js';
 import adminUserRoutes from './routes/adminUsers.js';
 import notificationRoutes from './routes/notifications.js';
-import menuRoutes from './routes/menus.js';
-import pageRoutes from './routes/pages.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -103,9 +100,6 @@ app.use('/api/promos', apiLimiter, promoRoutes);
 app.use('/api/admin/promos', apiLimiter, promoRoutes);
 app.use('/api/admin/users', apiLimiter, adminUserRoutes);
 app.use('/api/admin/notifications', apiLimiter, notificationRoutes);
-app.use('/api/upload', uploadRoutes);
-app.use('/api/menus', apiLimiter, menuRoutes);
-app.use('/api/pages', apiLimiter, pageRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

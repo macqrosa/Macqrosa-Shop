@@ -10,7 +10,7 @@ import { useStoreSettings } from '../../context/StoreSettingsContext';
 export const StorefrontHeader: React.FC = () => {
   const { customer } = useAuth();
   const { itemCount, subtotal, setIsCartOpen } = useCart();
-  const { themeConfig, systemAlerts, menus } = useStoreSettings();
+  const { themeConfig, systemAlerts } = useStoreSettings();
   const { resolvedTheme, toggleTheme } = useTheme();
   const navigate = useNavigate();
   const location = useLocation();
@@ -67,20 +67,11 @@ export const StorefrontHeader: React.FC = () => {
     }
   };
 
-  // Use dynamic menu if available, otherwise fallback
-  const mainMenu = menus['main-menu']?.items || [];
-  
-  const navLinks = mainMenu.length > 0 
-    ? mainMenu.map((item: any) => ({
-        label: item.title,
-        path: item.url,
-        icon: 'storefront' // We can expand to use icons later
-      }))
-    : [
-        { label: 'Shop', path: '/catalog', icon: 'storefront' },
-        { label: 'New Arrivals', path: '/catalog?sort=newest', icon: 'new_releases' },
-        { label: 'Best Sellers', path: '/catalog?sort=popular', icon: 'trending_up' },
-      ];
+  const navLinks = [
+    { label: 'Shop', path: '/catalog', icon: 'storefront' },
+    { label: 'New Arrivals', path: '/catalog?sort=newest', icon: 'new_releases' },
+    { label: 'Best Sellers', path: '/catalog?sort=popular', icon: 'trending_up' },
+  ];
 
   return (
     <>

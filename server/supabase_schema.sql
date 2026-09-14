@@ -201,53 +201,7 @@ CREATE TABLE IF NOT EXISTS notification_logs (
   sent_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
 );
 
--- 15. Media
-CREATE TABLE IF NOT EXISTS media (
-  id SERIAL PRIMARY KEY,
-  file_name TEXT NOT NULL,
-  file_path TEXT NOT NULL,
-  mime_type TEXT NOT NULL,
-  size INTEGER NOT NULL,
-  alt_text TEXT,
-  uploaded_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-);
-
--- 16. Menus
-CREATE TABLE IF NOT EXISTS menus (
-  id SERIAL PRIMARY KEY,
-  name TEXT NOT NULL,
-  handle TEXT UNIQUE NOT NULL,
-  location TEXT,
-  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-);
-
--- 17. Menu Items
-CREATE TABLE IF NOT EXISTS menu_items (
-  id SERIAL PRIMARY KEY,
-  menu_id INTEGER NOT NULL REFERENCES menus(id) ON DELETE CASCADE,
-  parent_id INTEGER REFERENCES menu_items(id) ON DELETE CASCADE,
-  label TEXT NOT NULL,
-  url TEXT,
-  target TEXT DEFAULT '_self',
-  order_index INTEGER DEFAULT 0,
-  show_desktop INTEGER DEFAULT 1,
-  show_tablet INTEGER DEFAULT 1,
-  show_mobile INTEGER DEFAULT 1,
-  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-);
-
--- 18. Pages
-CREATE TABLE IF NOT EXISTS pages (
-  id SERIAL PRIMARY KEY,
-  title TEXT NOT NULL,
-  slug TEXT UNIQUE NOT NULL,
-  content_blocks TEXT,
-  meta_title TEXT,
-  meta_description TEXT,
-  status TEXT DEFAULT 'published',
-  created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
-  updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
-);
+-- End of schema
 
 -- Indexes for optimal performance
 CREATE INDEX IF NOT EXISTS idx_products_category ON products(category);

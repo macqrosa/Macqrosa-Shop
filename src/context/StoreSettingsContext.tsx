@@ -153,8 +153,6 @@ interface StoreSettingsContextType {
   gatewaysConfig: GatewaySettings;
   storepageCms: StorepageCms;
   productpageCms: ProductpageCms;
-  menus: any;
-  pages: any[];
   isLoading: boolean;
   refreshSettings: () => Promise<void>;
   updateThemeColors: (primary: string, secondary: string) => void;
@@ -314,8 +312,6 @@ export const StoreSettingsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [gatewaysConfig, setGatewaysConfig] = useState<GatewaySettings>(defaultGatewaySettings);
   const [storepageCms, setStorepageCms] = useState<StorepageCms>(defaultStorepageCms);
   const [productpageCms, setProductpageCms] = useState<ProductpageCms>(defaultProductpageCms);
-  const [menus, setMenus] = useState<any>({});
-  const [pages, setPages] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   // Live Preview Support via postMessage
@@ -348,14 +344,10 @@ export const StoreSettingsProvider: React.FC<{ children: React.ReactNode }> = ({
 
   const refreshSettings = useCallback(async () => {
     try {
-      const [settingsRes, menusRes, pagesRes] = await Promise.allSettled([
-        fetch('/api/settings'),
-        fetch('/api/menus'),
-        fetch('/api/pages')
-      ]);
+      const settingsRes = await fetch('/api/settings');
 
-      if (settingsRes.status === 'fulfilled' && settingsRes.value.ok) {
-        const data = await settingsRes.value.json();
+      if (settingsRes.ok) {
+        const data = await settingsRes.json();
         if (data.storeSettings && Object.keys(data.storeSettings).length > 0) {
           setStoreSettings(prev => ({ ...prev, ...data.storeSettings }));
         }
@@ -386,22 +378,6 @@ export const StoreSettingsProvider: React.FC<{ children: React.ReactNode }> = ({
         }
       }
 
-      if (menusRes.status === 'fulfilled' && menusRes.value.ok) {
-        const menusList = await menusRes.value.json();
-        const menusObj: any = {};
-        for (const m of menusList) {
-           const mDetailsRes = await fetch(`/api/menus/${m.handle}`);
-           if (mDetailsRes.ok) {
-             menusObj[m.handle] = await mDetailsRes.json();
-           }
-        }
-        setMenus(menusObj);
-      }
-
-      if (pagesRes.status === 'fulfilled' && pagesRes.value.ok) {
-        setPages(await pagesRes.value.json());
-      }
-
     } catch (err) {
       console.warn('Could not fetch store settings, using defaults:', err);
     } finally {
@@ -430,8 +406,6 @@ export const StoreSettingsProvider: React.FC<{ children: React.ReactNode }> = ({
         gatewaysConfig,
         storepageCms,
         productpageCms,
-        menus,
-        pages,
         isLoading,
         refreshSettings,
         updateThemeColors

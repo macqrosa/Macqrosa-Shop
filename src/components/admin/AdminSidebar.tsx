@@ -39,15 +39,7 @@ export const AdminSidebar: React.FC<AdminSidebarProps> = ({ isOpen = true, onTog
         { label: 'Customers', path: '/admin/customers', icon: 'group' },
       ]
     },
-    {
-      title: 'Content & Design',
-      items: [
-        { label: 'Media Library', path: '/admin/media', icon: 'perm_media' },
-        { label: 'Pages', path: '/admin/pages', icon: 'article' },
-        { label: 'Menus', path: '/admin/menus', icon: 'menu' },
-        { label: 'Store Design', path: '/admin/design', icon: 'palette' },
-      ]
-    },
+
     {
       title: 'Operations',
       items: [

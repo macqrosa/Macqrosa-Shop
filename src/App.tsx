@@ -34,10 +34,6 @@ import { AdminCustomersPage } from './pages/admin/AdminCustomersPage';
 import { AdminCategoriesPage } from './pages/admin/AdminCategoriesPage';
 import { AdminSettingsPage } from './pages/admin/AdminSettingsPage';
 import { AdminNotificationsPage } from './pages/admin/AdminNotificationsPage';
-import { AdminMediaLibraryPage } from './pages/admin/AdminMediaLibraryPage';
-import { AdminMenuBuilderPage } from './pages/admin/AdminMenuBuilderPage';
-import { AdminPagesBuilderPage } from './pages/admin/AdminPagesBuilderPage';
-import { AdminStoreDesignPage } from './pages/admin/AdminStoreDesignPage';
 import { AdminTeamPage } from './pages/admin/AdminTeamPage';
 import { AdminGatewaysPage } from './pages/admin/AdminGatewaysPage';
 
@@ -193,38 +189,6 @@ export const App: React.FC = () => {
               element={
                 <ProtectedAdminRoute>
                   <AdminSettingsPage />
-                </ProtectedAdminRoute>
-              }
-            />
-            <Route
-              path="/admin/media"
-              element={
-                <ProtectedAdminRoute requireSuperAdmin>
-                  <AdminMediaLibraryPage />
-                </ProtectedAdminRoute>
-              }
-            />
-            <Route
-              path="/admin/menus"
-              element={
-                <ProtectedAdminRoute requireSuperAdmin>
-                  <AdminMenuBuilderPage />
-                </ProtectedAdminRoute>
-              }
-            />
-            <Route
-              path="/admin/pages"
-              element={
-                <ProtectedAdminRoute requireSuperAdmin>
-                  <AdminPagesBuilderPage />
-                </ProtectedAdminRoute>
-              }
-            />
-            <Route
-              path="/admin/design"
-              element={
-                <ProtectedAdminRoute requireSuperAdmin>
-                  <AdminStoreDesignPage />
                 </ProtectedAdminRoute>
               }
             />
