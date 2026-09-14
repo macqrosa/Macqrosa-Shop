@@ -94,7 +94,7 @@ app.use('/api/categories', apiLimiter, categoryRoutes);
 app.use('/api/orders', apiLimiter, orderRoutes);
 app.use('/api/admin/inventory', apiLimiter, inventoryRoutes);
 app.use('/api/admin/customers', apiLimiter, customerRoutes);
-app.use('/api/admin/analytics', apiLimiter, analyticsRoutes);
+app.use('/api/admin/dashboard-stats', apiLimiter, analyticsRoutes);
 app.use('/api/settings', apiLimiter, settingsRoutes);
 app.use('/api/promos', apiLimiter, promoRoutes);
 app.use('/api/admin/promos', apiLimiter, promoRoutes);

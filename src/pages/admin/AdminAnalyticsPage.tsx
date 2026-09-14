@@ -6,6 +6,7 @@ import { AdminSidebar } from '../../components/admin/AdminSidebar';
 export const AdminAnalyticsPage: React.FC = () => {
   const [data, setData] = useState<AnalyticsData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [activeDateRange, setActiveDateRange] = useState('30d');
   const [activeCategory, setActiveCategory] = useState('All Categories');
   const [activeProduct, setActiveProduct] = useState('All Products');
@@ -33,21 +34,24 @@ export const AdminAnalyticsPage: React.FC = () => {
       category: activeCategory,
       product: activeProduct
     });
-    fetch(`/api/admin/analytics?${params.toString()}`, {
+    fetch(`/api/admin/dashboard-stats?${params.toString()}`, {
       headers: { Authorization: `Bearer ${token}` }
     })
       .then(res => res.json())
       .then(resData => {
         if (resData.error || !resData.kpis) {
           console.error('Analytics API returned error:', resData);
+          setErrorMsg(resData.error || 'Failed to load analytics KPIs.');
           setLoading(false);
           return;
         }
+        setErrorMsg(null);
         setData(resData);
         setLoading(false);
       })
       .catch(err => {
         console.error('Failed to load analytics telemetry:', err);
+        setErrorMsg(err.message || 'Network error.');
         setLoading(false);
       });
   }, [activeDateRange, activeCategory, activeProduct]);
@@ -182,7 +186,12 @@ export const AdminAnalyticsPage: React.FC = () => {
             </div>
           </div>
 
-          {loading || !data ? (
+          {errorMsg ? (
+            <div className="py-32 text-center text-red-500 font-serif text-lg">
+              <span className="material-symbols-outlined text-[48px] block mb-4">error</span>
+              Failed to load telemetry: {errorMsg}
+            </div>
+          ) : loading || !data ? (
             <div className="py-32 text-center text-on-surface-variant font-serif text-lg">
               Synthesizing real-time telemetry from Place Vendôme vault...
             </div>
